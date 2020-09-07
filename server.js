@@ -3,11 +3,11 @@ const path = require('path');
 const app = express();
 
 // Serve static files....
-app.use(express.static(__dirname + '/dist/recipe'));
+app.use(express.static(__dirname + '/dist/go-fullstack-activity'));
 
 // Send all requests to index.html
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/recipe/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/go-fullstack-activity/index.html'));
 });
 
 // default Heroku PORT
