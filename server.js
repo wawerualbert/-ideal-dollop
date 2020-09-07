@@ -1,28 +1,14 @@
 const express = require('express');
 const path = require('path');
- 
 const app = express();
-const forceSSL = function() {
-    return function (req, res, next) {
-      if (req.headers['x-forwarded-proto'] !== 'https') {
-        return res.redirect(
-         ['https://', req.get('Host'), req.url].join('')
-        );
-      }
-      next();
-    }
-  }// Instruct the app
-  // to use the forceSSL
-  // middleware
-app.use(forceSSL());
- 
-// Serve only the static files form the angularapp directory
-app.use(express.static(__dirname + '/dist/go-fullstack-activity'));
- 
-app.get('/*', function(req,res) {
- 
-res.sendFile(path.join(__dirname+'/dist/go-fullstack-activity/index.html'));
+
+// Serve static files....
+app.use(express.static(__dirname + '/dist/recipe'));
+
+// Send all requests to index.html
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/recipe/index.html'));
 });
- 
-// Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+
+// default Heroku PORT
+app.listen(process.env.PORT || 3000);
